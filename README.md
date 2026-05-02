@@ -8,4 +8,4 @@ Una aplicación interactiva diseñada para gestionar y rastrear la colección de
 * **Interfaz optimizada**: Diseñada para ser usada fácilmente desde el celular.
 
 ---
-*Proyecto desarrollado con React y GitHub Actions.*
+*Proyecto desarrollado con React y GitHub Actions.*.
