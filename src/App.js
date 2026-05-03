@@ -1,6 +1,6 @@
 import { useState, useCallback } from “react”;
 
-// ─── REAL STICKER DATABASE ─────────────────────────────────────────────────
+// — REAL STICKER DATABASE ———————————————––
 const STICKER_DB = [
 { id: “00”, name: “Panini Logo”, team: “Especial” },
 { id: “FWC-1”, name: “Emblema Oficial 1/2”, team: “Especial” },
@@ -1007,23 +1007,23 @@ const TEAM_GROUP = {
 “Argentina”:“J”,“Austria”:“J”,“Argelia”:“J”,“Jordania”:“J”,
 “Portugal”:“K”,“Colombia”:“K”,“Uzbekistán”:“K”,“RD Congo”:“K”,
 “Inglaterra”:“L”,“Croacia”:“L”,“Panamá”:“L”,“Ghana”:“L”,
-“Especial”:“★”,“Extra”:“★”,
+“Especial”:”*”,“Extra”:”*”,
 };
 
 const FLAGS = {
-“México”:“🇲🇽”,“Corea del Sur”:“🇰🇷”,“Sudáfrica”:“🇿🇦”,“R. Checa”:“🇨🇿”,
-“Canadá”:“🇨🇦”,“Suiza”:“🇨🇭”,“Catar”:“🇶🇦”,“Bosnia”:“🇧🇦”,
-“Brasil”:“🇧🇷”,“Marruecos”:“🇲🇦”,“Escocia”:“🏴󠁧󠁢󠁳󠁣󠁴󠁿”,“Haití”:“🇭🇹”,
-“EEUU”:“🇺🇸”,“Australia”:“🇦🇺”,“Paraguay”:“🇵🇾”,“Turquía”:“🇹🇷”,
-“Alemania”:“🇩🇪”,“Ecuador”:“🇪🇨”,“C. de Marfil”:“🇨🇮”,“Curaçao”:“🇨🇼”,
-“Países Bajos”:“🇳🇱”,“Japón”:“🇯🇵”,“Túnez”:“🇹🇳”,“Suecia”:“🇸🇪”,
-“Bélgica”:“🇧🇪”,“Irán”:“🇮🇷”,“Egipto”:“🇪🇬”,“Nueva Zelanda”:“🇳🇿”,
-“España”:“🇪🇸”,“Uruguay”:“🇺🇾”,“Arabia Saudí”:“🇸🇦”,“Cabo Verde”:“🇨🇻”,
-“Francia”:“🇫🇷”,“Senegal”:“🇸🇳”,“Noruega”:“🇳🇴”,“Irak”:“🇮🇶”,
-“Argentina”:“🇦🇷”,“Austria”:“🇦🇹”,“Argelia”:“🇩🇿”,“Jordania”:“🇯🇴”,
-“Portugal”:“🇵🇹”,“Colombia”:“🇨🇴”,“Uzbekistán”:“🇺🇿”,“RD Congo”:“🇨🇩”,
-“Inglaterra”:“🏴󠁧󠁢󠁥󠁮󠁧󠁿”,“Croacia”:“🇭🇷”,“Panamá”:“🇵🇦”,“Ghana”:“🇬🇭”,
-“Especial”:“⭐”,“Extra”:“✨”,
+“México”:”[MEX]”,“Corea del Sur”:”[KOR]”,“Sudáfrica”:”[RSA]”,“R. Checa”:”[CZE]”,
+“Canadá”:”[CAN]”,“Suiza”:”[SUI]”,“Catar”:”[QAT]”,“Bosnia”:”[BIH]”,
+“Brasil”:”[BRA]”,“Marruecos”:”[MAR]”,“Escocia”:”[SCO]”,“Haití”:”[HAI]”,
+“EEUU”:”[USA]”,“Australia”:”[AUS]”,“Paraguay”:”[PAR]”,“Turquía”:”[TUR]”,
+“Alemania”:”[GER]”,“Ecuador”:”[ECU]”,“C. de Marfil”:”[CIV]”,“Curaçao”:”[CUW]”,
+“Países Bajos”:”[NED]”,“Japón”:”[JPN]”,“Túnez”:”[TUN]”,“Suecia”:”[SWE]”,
+“Bélgica”:”[BEL]”,“Irán”:”[IRN]”,“Egipto”:”[EGY]”,“Nueva Zelanda”:”[NZL]”,
+“España”:”[ESP]”,“Uruguay”:”[URU]”,“Arabia Saudí”:”[KSA]”,“Cabo Verde”:”[CPV]”,
+“Francia”:”[FRA]”,“Senegal”:”[SEN]”,“Noruega”:”[NOR]”,“Irak”:”[IRQ]”,
+“Argentina”:”[ARG]”,“Austria”:”[AUT]”,“Argelia”:”[ALG]”,“Jordania”:”[JOR]”,
+“Portugal”:”[POR]”,“Colombia”:”[COL]”,“Uzbekistán”:”[UZB]”,“RD Congo”:”[COD]”,
+“Inglaterra”:”[ENG]”,“Croacia”:”[CRO]”,“Panamá”:”[PAN]”,“Ghana”:”[GHA]”,
+“Especial”:”[*]”,“Extra”:”[+]”,
 };
 
 const GROUPS_LIST = [“A”,“B”,“C”,“D”,“E”,“F”,“G”,“H”,“I”,“J”,“K”,“L”];
@@ -1071,7 +1071,7 @@ function toggleOwned(id) {
 const next = {…owned, [id]: !owned[id]};
 setOwned(next);
 const s = STICKER_DB.find(s=>s.id===id);
-if(!owned[id]) notify(`✓ ${s?.name || id}`);
+if(!owned[id]) notify(`v ${s?.name || id}`);
 }
 
 function addRepeated(id) {
@@ -1117,7 +1117,7 @@ setAiLoading(false);
 const allTeams = […new Set(STICKER_DB.map(s=>s.team))];
 
 const filteredStickers = STICKER_DB.filter(s => {
-const group = TEAM_GROUP[s.team] || “★”;
+const group = TEAM_GROUP[s.team] || “*”;
 if(filterGroup!==“all” && group!==filterGroup) return false;
 if(filterStatus===“missing” && owned[s.id]) return false;
 if(filterStatus===“owned” && !owned[s.id]) return false;
@@ -1180,9 +1180,9 @@ if(showNameModal) return (
 <style>{css}</style>
 <div style={S.modal}>
 <div style={S.mbox}>
-<div style={{fontSize:44,marginBottom:6}}>⚽</div>
+<div style={{fontSize:44,marginBottom:6}}>[WC]</div>
 <div style={{fontSize:22,fontWeight:900,color:”#e94560”,letterSpacing:2}}>PANINI 2026</div>
-<div style={{color:”#8899bb”,fontSize:12,marginTop:4}}>{TOTAL} láminas · 48 equipos · jugadores reales</div>
+<div style={{color:”#8899bb”,fontSize:12,marginTop:4}}>{TOTAL} láminas . 48 equipos . jugadores reales</div>
 <input style={S.minput} placeholder=“Tu nombre” value={nameInput} onChange={e=>setNameInput(e.target.value)}
 onKeyDown={e=>{if(e.key===“Enter”&&nameInput.trim()){setUserName(nameInput.trim());setShowNameModal(false);}}}/>
 <button style={S.pBtn} onClick={()=>{if(nameInput.trim()){setUserName(nameInput.trim());setShowNameModal(false);}}}>¡EMPEZAR!</button>
@@ -1198,14 +1198,14 @@ return (
 ```
   <div style={S.header}>
     <div style={S.hInner}>
-      <div style={S.logo}>⚽ <span style={{color:"#e94560"}}>PANINI</span> 2026</div>
+      <div style={S.logo}>[WC] <span style={{color:"#e94560"}}>PANINI</span> 2026</div>
       <div style={{display:"flex",gap:10,alignItems:"center"}}>
         <span style={{color:"#8899bb",fontSize:12}}>{userName}</span>
         <div style={S.pct}>{pct}%</div>
       </div>
     </div>
     <div style={S.nav}>
-      {[{id:"album",l:"📒 Álbum"},{id:"scan",l:"⚡ Rápida"},{id:"exchange",l:"🔄 Cambio"},{id:"stats",l:"📊 Stats"}].map(n=>(
+      {[{id:"album",l:" Álbum"},{id:"scan",l:" Rápida"},{id:"exchange",l:" Cambio"},{id:"stats",l:" Stats"}].map(n=>(
         <button key={n.id} style={S.nb(view===n.id)} onClick={()=>setView(n.id)}>{n.l}</button>
       ))}
     </div>
@@ -1213,7 +1213,7 @@ return (
 
   <div style={S.main}>
 
-    {/* ── ALBUM ── */}
+    {/* -- ALBUM -- */}
     {view==="album" && <>
       <div style={S.sg}>
         {[["#22c55e",ownedCount,"Pegadas"],["#e94560",missingCount,"Faltantes"],["#f5a623",repeatedTotal,"Repetidas"],["#818cf8",TOTAL,"Total"]].map(([c,v,l])=>(
@@ -1229,7 +1229,7 @@ return (
       <div style={S.pb}><div style={S.pf}/></div>
 
       <div style={S.sec}>Láminas</div>
-      <input style={S.si} placeholder="🔍 Buscar jugador, equipo o código (ej: COL-14)..." value={search} onChange={e=>setSearch(e.target.value)}/>
+      <input style={S.si} placeholder=" Buscar jugador, equipo o código (ej: COL-14)..." value={search} onChange={e=>setSearch(e.target.value)}/>
 
       <div style={S.fi}>
         {["all","missing","owned"].map(f=>(
@@ -1239,7 +1239,7 @@ return (
         ))}
       </div>
       <div style={{...S.fi,marginBottom:18}}>
-        <button style={S.fb(filterGroup==="all")} onClick={()=>setFilterGroup("all")}>★ Todos</button>
+        <button style={S.fb(filterGroup==="all")} onClick={()=>setFilterGroup("all")}>* Todos</button>
         {GROUPS_LIST.map(g=>(
           <button key={g} style={S.fb(filterGroup===g)} onClick={()=>setFilterGroup(g)}>Grupo {g}</button>
         ))}
@@ -1253,7 +1253,7 @@ return (
               <div style={S.cn(io)}>{s.id}</div>
               <div style={S.ct}>{s.name}</div>
               <div style={S.ctm}>{FLAGS[s.team]||""} {s.team}</div>
-              {io&&<div style={S.ck}>✓</div>}
+              {io&&<div style={S.ck}>v</div>}
               {rep>0&&<div style={S.rb}>×{rep}</div>}
             </div>
           );
@@ -1266,12 +1266,12 @@ return (
       )}
     </>}
 
-    {/* ── SCAN ── */}
+    {/* -- SCAN -- */}
     {view==="scan" && <>
       <div style={S.sec}>Lámina rápida</div>
       <div style={S.scanBox}>
         <div style={{color:"#8899bb",fontSize:13}}>Escribe el código de la lámina</div>
-        <div style={{color:"#6677aa",fontSize:11,marginTop:2}}>ej: COL-14 · ARG-17 · BRA-14 · FWC-5</div>
+        <div style={{color:"#6677aa",fontSize:11,marginTop:2}}>ej: COL-14 . ARG-17 . BRA-14 . FWC-5</div>
         <input style={S.sinput} placeholder="COL-14" value={lastScanned} onChange={handleScanChange}/>
         {scanResult && (
           <>
@@ -1280,13 +1280,13 @@ return (
               <span style={{color:"#8899bb",fontSize:12,marginLeft:8}}>{scanResult.team}</span>
             </div>
             <div style={{fontSize:12,color:owned[scanResult.id]?"#22c55e":"#8899bb",marginTop:3}}>
-              {owned[scanResult.id]?"✓ Pegada":"Faltante"}{repeated[scanResult.id]?` · ${repeated[scanResult.id]} repetida(s)`:""}
+              {owned[scanResult.id]?"v Pegada":"Faltante"}{repeated[scanResult.id]?` . ${repeated[scanResult.id]} repetida(s)`:""}
             </div>
             <div style={{display:"flex",gap:10,marginTop:12}}>
               <button style={S.sbtn(owned[scanResult.id]?"#1e2a4a":"#22c55e")} onClick={()=>toggleOwned(scanResult.id)}>
-                {owned[scanResult.id]?"✓ Marcar faltante":"✅ Marcar pegada"}
+                {owned[scanResult.id]?"v Marcar faltante":" Marcar pegada"}
               </button>
-              <button style={S.sbtn("#f5a623")} onClick={()=>addRepeated(scanResult.id)}>🔁 +1 Repetida</button>
+              <button style={S.sbtn("#f5a623")} onClick={()=>addRepeated(scanResult.id)}> +1 Repetida</button>
             </div>
           </>
         )}
@@ -1303,7 +1303,7 @@ return (
               <div style={S.cn(false)}>{s.id}</div>
               <div style={{...S.ct,fontSize:11}}>{s.name}</div>
               <div style={{display:"flex",alignItems:"center",gap:6,marginTop:7}}>
-                <button onClick={e=>{e.stopPropagation();removeRepeated(s.id);}} style={{background:"#e94560",color:"#fff",border:"none",borderRadius:5,padding:"3px 9px",cursor:"pointer",fontSize:15,fontFamily:"inherit"}}>−</button>
+                <button onClick={e=>{e.stopPropagation();removeRepeated(s.id);}} style={{background:"#e94560",color:"#fff",border:"none",borderRadius:5,padding:"3px 9px",cursor:"pointer",fontSize:15,fontFamily:"inherit"}}>-</button>
                 <span style={{fontWeight:900,color:"#f5a623",fontSize:17}}>×{repeated[s.id]}</span>
                 <button onClick={e=>{e.stopPropagation();addRepeated(s.id);}} style={{background:"#22c55e",color:"#fff",border:"none",borderRadius:5,padding:"3px 9px",cursor:"pointer",fontSize:15,fontFamily:"inherit"}}>+</button>
               </div>
@@ -1313,22 +1313,22 @@ return (
       </>}
     </>}
 
-    {/* ── EXCHANGE ── */}
+    {/* -- EXCHANGE -- */}
     {view==="exchange" && <>
       <div style={S.sec}>Intercambio</div>
       <div style={S.aiBox}>
-        <div style={{fontSize:14,fontWeight:800,color:"#818cf8",marginBottom:6,letterSpacing:1}}>🤖 ASISTENTE IA</div>
+        <div style={{fontSize:14,fontWeight:800,color:"#818cf8",marginBottom:6,letterSpacing:1}}>IA ASISTENTE IA</div>
         <div style={{color:"#6677aa",fontSize:12,marginBottom:12}}>
-          Análisis basado en tu álbum: {ownedCount} pegadas · {repeatedTotal} repetidas
+          Análisis basado en tu álbum: {ownedCount} pegadas . {repeatedTotal} repetidas
         </div>
         <button style={S.aiBtn} onClick={getAiSuggestion} disabled={aiLoading}>
-          {aiLoading?"⏳ Analizando...":"✨ Dame estrategias de intercambio"}
+          {aiLoading?" Analizando...":"[+] Dame estrategias de intercambio"}
         </button>
         {aiSuggestion&&<div style={{fontSize:13,lineHeight:1.6,color:"#c0cce8",whiteSpace:"pre-wrap"}}>{aiSuggestion}</div>}
       </div>
 
       <div style={S.exCard}>
-        <div style={S.exTitle}>📤 Lo que ofrezco (repetidas)</div>
+        <div style={S.exTitle}> Lo que ofrezco (repetidas)</div>
         {Object.keys(repeated).length===0
           ? <div style={{color:"#6677aa",fontSize:12}}>Sin repetidas aún. Márcalas en "Lámina rápida".</div>
           : <div style={S.tagList}>{STICKER_DB.filter(s=>repeated[s.id]>0).map(s=>(
@@ -1338,11 +1338,11 @@ return (
       </div>
 
       <div style={S.exCard}>
-        <div style={S.exTitle}>📥 Lo que necesito (faltantes)</div>
+        <div style={S.exTitle}> Lo que necesito (faltantes)</div>
         {missingCount===0
-          ? <div style={{color:"#22c55e",fontWeight:700,fontSize:13}}>🎉 ¡Álbum completo!</div>
+          ? <div style={{color:"#22c55e",fontWeight:700,fontSize:13}}> ¡Álbum completo!</div>
           : <>
-              <div style={{color:"#6677aa",fontSize:11,marginBottom:7}}>{missingCount} faltantes · primeras {Math.min(missingCount,60)}:</div>
+              <div style={{color:"#6677aa",fontSize:11,marginBottom:7}}>{missingCount} faltantes . primeras {Math.min(missingCount,60)}:</div>
               <div style={S.tagList}>
                 {STICKER_DB.filter(s=>!owned[s.id]).slice(0,60).map(s=>(
                   <div key={s.id} style={S.tag("#e94560")}>{s.id}</div>
@@ -1354,26 +1354,26 @@ return (
       </div>
 
       <div style={S.exCard}>
-        <div style={S.exTitle}>📱 Texto para WhatsApp</div>
+        <div style={S.exTitle}> Texto para WhatsApp</div>
         <div style={{background:"#0a0a0f",borderRadius:8,padding:10,marginBottom:8,fontSize:11,color:"#c0cce8",lineHeight:1.7,whiteSpace:"pre-wrap"}}>
 ```
 
-{`⚽ PANINI MUNDIAL 2026 — ${userName}
+{`[WC] PANINI MUNDIAL 2026 – ${userName}
 
-📤 OFREZCO:
-${STICKER_DB.filter(s=>repeated[s.id]>0).map(s=>`${s.id}×${repeated[s.id]}`).join(” · “)||”(sin repetidas aún)”}
+OFREZCO:
+${STICKER_DB.filter(s=>repeated[s.id]>0).map(s=>`${s.id}×${repeated[s.id]}`).join(” . “)||”(sin repetidas aún)”}
 
-📥 NECESITO:
-${STICKER_DB.filter(s=>!owned[s.id]).slice(0,30).map(s=>s.id).join(” · “)}${missingCount>30?` ... y ${missingCount-30} más`:””}
+NECESITO:
+${STICKER_DB.filter(s=>!owned[s.id]).slice(0,30).map(s=>s.id).join(” . “)}${missingCount>30?` ... y ${missingCount-30} más`:””}
 
-💬 ¡Hablemos para cambiar!`} </div> <button style={{...S.pBtn,fontSize:12,marginTop:0}} onClick={()=>{ const text=`⚽ PANINI MUNDIAL 2026 — ${userName}\n\n📤 OFREZCO:\n${STICKER_DB.filter(s=>repeated[s.id]>0).map(s=>`${s.id}×${repeated[s.id]}`).join(” · “)||”(sin repetidas)”}\n\n📥 NECESITO:\n${STICKER_DB.filter(s=>!owned[s.id]).slice(0,30).map(s=>s.id).join(” · “)}${missingCount>30?` ... y ${missingCount-30} más`:””}\n\n💬 ¡Hablemos para cambiar!`;
-navigator.clipboard?.writeText(text).then(()=>notify(“📋 Copiado para WhatsApp!”));
-}}>📋 Copiar para WhatsApp</button>
+¡Hablemos para cambiar!`} </div> <button style={{...S.pBtn,fontSize:12,marginTop:0}} onClick={()=>{ const text=`[WC] PANINI MUNDIAL 2026 – ${userName}\n\n OFREZCO:\n${STICKER_DB.filter(s=>repeated[s.id]>0).map(s=>`${s.id}×${repeated[s.id]}`).join(” . “)||”(sin repetidas)”}\n\n NECESITO:\n${STICKER_DB.filter(s=>!owned[s.id]).slice(0,30).map(s=>s.id).join(” . “)}${missingCount>30?` ... y ${missingCount-30} más`:””}\n\n ¡Hablemos para cambiar!`;
+navigator.clipboard?.writeText(text).then(()=>notify(” Copiado para WhatsApp!”));
+}}> Copiar para WhatsApp</button>
 </div>
 </>}
 
 ```
-    {/* ── STATS ── */}
+    {/* -- STATS -- */}
     {view==="stats" && <>
       <div style={S.sec}>Progreso por grupo</div>
       {groupStats.map(({g,total,owned:ow})=>{
@@ -1382,7 +1382,7 @@ navigator.clipboard?.writeText(text).then(()=>notify(“📋 Copiado para WhatsA
           <div key={g} style={S.gc}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:7}}>
               <span style={{fontWeight:800,color:"#e94560",fontSize:15,letterSpacing:2}}>GRUPO {g}</span>
-              <span style={{fontWeight:700,color:p===100?"#22c55e":p>50?"#f5a623":"#8899bb",fontSize:13}}>{p}% · {ow}/{total}</span>
+              <span style={{fontWeight:700,color:p===100?"#22c55e":p>50?"#f5a623":"#8899bb",fontSize:13}}>{p}% . {ow}/{total}</span>
             </div>
             <div style={{background:"#0a0a0f",borderRadius:4,height:5,overflow:"hidden"}}>
               <div style={{background:p===100?"#22c55e":"linear-gradient(90deg,#e94560,#f5a623)",width:`${p}%`,height:"100%",borderRadius:4,transition:"width 0.3s"}}/>
@@ -1404,7 +1404,7 @@ navigator.clipboard?.writeText(text).then(()=>notify(“📋 Copiado para WhatsA
       <div style={{marginTop:18,textAlign:"center"}}>
         <button style={{background:"#1e2a4a",color:"#e94560",border:"none",borderRadius:8,padding:"10px 20px",cursor:"pointer",fontFamily:"inherit",fontSize:12,fontWeight:700}}
           onClick={()=>{if(confirm("¿Borrar todo el progreso?")){setOwned({});setRepeated({});notify("Progreso borrado","error");}}}>
-          🗑 Reiniciar álbum
+           Reiniciar álbum
         </button>
       </div>
     </>}
